@@ -4,20 +4,27 @@ public class Main {
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        PlaylistController controller = new PlaylistController();
-        controller.carregarPlaylistsBin();
+        PlaylistControlador controlador = new PlaylistControlador();
+        controlador.carregarPlaylistsBin();
 
         while (true) {
             menu();
-            int op = lerInt("Escolha: ");
-            switch (op) {
-                case 1: cadastrarUsuario(controller); break;
-                case 2: cadastrarMusica(controller); break;
-                case 3: controller.listarCatalogo(); break;
-                case 4: criarPlaylist(controller); break;
-                case 5: adicionarItem(controller); break;
-                case 6: removerItem(controller); break;
-                case 7: listarPlaylist(controller); break;
+            int opcao = lerInt("Escolha: ");
+            switch (opcao) {
+                case 1: cadastrarUsuario(controlador);
+                break;
+                case 2: cadastrarMusica(controlador);
+                break;
+                case 3: controlador.listarCatalogo();
+                break;
+                case 4: criarPlaylist(controlador);
+                break;
+                case 5: adicionarItem(controlador);
+                break;
+                case 6: removerItem(controlador);
+                break;
+                case 7: listarPlaylist(controlador);
+                break;
                 case 0: System.out.println("Saindo..."); return;
                 default: System.out.println("Opção inválida.");
             }
@@ -36,13 +43,13 @@ public class Main {
         System.out.println("0. Sair");
     }
 
-    private static void cadastrarUsuario(PlaylistController c) {
+    private static void cadastrarUsuario(PlaylistControlador c) {
         System.out.print("Nome do usuário: ");
         String nome = sc.nextLine().trim();
         c.cadastrarUsuario(new Usuario(nome));
     }
 
-    private static void cadastrarMusica(PlaylistController c) {
+    private static void cadastrarMusica(PlaylistControlador c) {
         System.out.print("Título da música: ");
         String titulo = sc.nextLine().trim();
         System.out.print("Artista: ");
@@ -53,7 +60,7 @@ public class Main {
         c.cadastrarMusica(new Musica(titulo, artista, dur, genero));
     }
 
-    private static void criarPlaylist(PlaylistController c) {
+    private static void criarPlaylist(PlaylistControlador c) {
         System.out.print("Nome da playlist: ");
         String nome = sc.nextLine().trim();
         System.out.print("Dono da playlist: ");
@@ -61,15 +68,15 @@ public class Main {
         c.criarPlaylist(new Playlist(nome, dono));
     }
 
-    private static void adicionarItem(PlaylistController c) {
-        System.out.print("Nome da playlist: ");
+    private static void adicionarItem(PlaylistControlador c) {
+        System.out.print("Qual playlist deseja adicionar: ");
         String pl = sc.nextLine().trim();
         System.out.print("Título da música: ");
         String mid = sc.nextLine().trim();
         c.adicionarItemNaPlaylist(pl, mid);
     }
 
-    private static void removerItem(PlaylistController c) {
+    private static void removerItem(PlaylistControlador c) {
         System.out.print("Nome da playlist: ");
         String pl = sc.nextLine().trim();
         System.out.print("Título da música: ");
@@ -77,7 +84,7 @@ public class Main {
         c.removerItemDaPlaylist(pl, mid);
     }
 
-    private static void listarPlaylist(PlaylistController c) {
+    private static void listarPlaylist(PlaylistControlador c) {
         System.out.print("Nome da playlist: ");
         String pl = sc.nextLine().trim();
         c.listarPlaylist(pl);
