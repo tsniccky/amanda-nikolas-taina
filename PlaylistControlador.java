@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class PlaylistController {
+public class PlaylistControlador {
     private final Map<String, Musica> catalogo = new HashMap<>();
     private final Map<String, Usuario> usuarios = new HashMap<>();
     private final Map<String, Playlist> playlists = new HashMap<>();
@@ -103,7 +103,6 @@ public class PlaylistController {
         } catch (IOException e) { }
     }
 
-    @SuppressWarnings("unchecked")
     public void carregarPlaylistsBin() {
         File f = new File(ARQ_PLAYLISTS);
         if (!f.exists()) return;
@@ -113,13 +112,15 @@ public class PlaylistController {
                 playlists.clear();
                 playlists.putAll((Map<String,Playlist>) obj);
             }
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
     }
 
     private void salvarPlaylistsBin() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARQ_PLAYLISTS))) {
             oos.writeObject(playlists);
-        } catch (IOException e) { }
+        } catch (IOException e) {
+        }
     }
 
     private static String formatarDuracao(int totalSeg) {
