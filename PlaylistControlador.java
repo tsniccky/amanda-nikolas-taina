@@ -96,7 +96,6 @@ public class PlaylistControlador {
         }
     }
 
-    // ===== Persistência =====
     private void salvarUsuarioTxt(Usuario u) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ARQ_USUARIOS, true))) {
             pw.println(u.getNome());
@@ -176,3 +175,4 @@ public class PlaylistControlador {
         return String.format("%dm %02ds", m, s);
     }
 }
+
